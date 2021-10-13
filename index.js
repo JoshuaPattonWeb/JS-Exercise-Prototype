@@ -83,9 +83,14 @@ console.log(latoya.toString())
 function Car(model, milesPerGallon) {
   this.tank = 0
   this.odometer = 0
+  this.model = model
+  this.milesPerGallon = milesPerGallon
 }
 Car.prototype.fill = function(Gallons){
   this.tank = this.tank + Gallons
+}
+Car.prototype.drive = function (distance) {
+  const distanceDriven = this.tank * this.milesPerGallon
 }
 
 
@@ -96,18 +101,23 @@ Car.prototype.fill = function(Gallons){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name ,age)
+  this.favoriteToy = favoriteToy
+}
+Baby.prototype = Object.create(Person.prototype)
+Baby.prototype.play = function (){
+  return `Playing with ${this.favoriteToy}`
 }
 
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window binding; When no rules declared, will return window or will return undefined if strict is declared.
+  2. New Binding; Functions that are created as constructors
+  3. Implicit Binding; This refers to the invoking a function within an object and following with dot notation.
+  4. Explicit Binding; Passing a certain function to use an object. .call/.apply/.bind
 */
 
 
